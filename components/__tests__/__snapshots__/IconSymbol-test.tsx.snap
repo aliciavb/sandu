@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IconSymbol renders home icon correctly 1`] = `
+<ViewManagerAdapter_SymbolModule
+  animated={false}
+  colors={[]}
+  name="house.fill"
+  resizeMode="scaleAspectFit"
+  style={
+    [
+      {
+        "height": 24,
+        "width": 24,
+      },
+      [
+        {
+          "height": 24,
+          "width": 24,
+        },
+        undefined,
+      ],
+    ]
+  }
+  tintColor="black"
+  type="monochrome"
+  weight="regular"
+/>
+`;
+
+exports[`IconSymbol renders with custom size 1`] = `
+<ViewManagerAdapter_SymbolModule
+  animated={false}
+  colors={[]}
+  name="paperplane.fill"
+  resizeMode="scaleAspectFit"
+  style={
+    [
+      {
+        "height": 24,
+        "width": 24,
+      },
+      [
+        {
+          "height": 32,
+          "width": 32,
+        },
+        undefined,
+      ],
+    ]
+  }
+  tintColor="blue"
+  type="monochrome"
+  weight="regular"
+/>
+`;
+
+exports[`IconSymbol renders with custom style 1`] = `
+<ViewManagerAdapter_SymbolModule
+  animated={false}
+  colors={[]}
+  name="chevron.right"
+  resizeMode="scaleAspectFit"
+  style={
+    [
+      {
+        "height": 24,
+        "width": 24,
+      },
+      [
+        {
+          "height": 24,
+          "width": 24,
+        },
+        {
+          "marginLeft": 10,
+        },
+      ],
+    ]
+  }
+  tintColor="red"
+  type="monochrome"
+  weight="regular"
+/>
+`;

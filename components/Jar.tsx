@@ -1,50 +1,55 @@
-import React from 'react';
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
-import { Color } from '../types/game';
+// components/Jar.tsx
+// crea el jarron con las capas
 
-interface JarProps {
-  layers: Color[];
+import { Pressable, View, Animated } from 'react-native';
+import { useEffect, useRef } from 'react';
+import { styles } from '../styles/Jar.styles';
+
+type JarProps = {
+  layers: string[];
   onPress: () => void;
-  isSelected: boolean;
-}
+  selected?: boolean;
+};
 
-const Jar: React.FC<JarProps> = ({ layers, onPress, isSelected }) => {
+export const Jar = ({ layers, onPress, selected = false }: JarProps) => {
+  const maxLayers = 4;
+  const filledLayers = Array.from({ length: maxLayers }, (_, i) => layers[i] || 'transparent');
+
+  const scaleAnim = useRef(new Animated.Value(1)).current;
+
+  useEffect(() => {
+    if (selected) {
+      Animated.loop(
+        Animated.sequence([
+          Animated.timing(scaleAnim, {
+            toValue: 1.08,
+            duration: 250,
+            useNativeDriver: true,
+          }),
+          Animated.timing(scaleAnim, {
+            toValue: 1,
+            duration: 250,
+            useNativeDriver: true,
+          }),
+        ])
+      ).start();
+    } else {
+      scaleAnim.stopAnimation();
+      scaleAnim.setValue(1);
+    }
+  }, [selected]);
+
   return (
-    <TouchableOpacity onPress={onPress} style={styles.container}>
-      <View style={[styles.jar, isSelected && styles.selected]}>
-        {layers.map((color, index) => (
-          <View
-            key={index}
-            style={[styles.layer, { backgroundColor: color || 'transparent' }]}
-          />
-        ))}
-      </View>
-    </TouchableOpacity>
+    <Pressable onPress={onPress}>
+      <Animated.View style={[styles.jar, { transform: [{ scale: scaleAnim }] }]}>
+        {filledLayers
+          .slice()
+          .reverse()
+          .map((color, index) => (
+            <View key={index} style={[styles.layer, { backgroundColor: color }]} />
+          ))}
+      </Animated.View>
+    </Pressable>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    padding: 10,
-  },
-  jar: {
-    width: 60,
-    height: 120,
-    borderWidth: 2,
-    borderColor: 'black',
-    borderRadius: 8,
-    overflow: 'hidden',
-    justifyContent: 'flex-end',
-    backgroundColor: 'transparent',
-  },
-  selected: {
-    borderColor: '#FFD700',
-    borderWidth: 3,
-  },
-  layer: {
-    width: '100%',
-    height: 30,
-  },
-});
-
-export default Jar; 

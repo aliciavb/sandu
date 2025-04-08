@@ -1,4 +1,4 @@
-# 🌈 Sandu – Juego de Sorting de Colores
+# Sandu – Juego de Sorting de Colores
 
 **Sandu** es un juego móvil minimalista y sin anuncios inspirado en *Water Sort Puzzle*, desarrollado con **React Native**, **Expo** y **TypeScript**, con un enfoque indie y una estética visual propia.
 
